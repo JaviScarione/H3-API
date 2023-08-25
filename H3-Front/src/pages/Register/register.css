@@ -1,0 +1,88 @@
+.registerContainer {
+    width: 350px;
+    height: 450px;
+    margin: 40px auto;
+    padding: 20px 30px 20px 30px;
+    background-color: var(--textLight);
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px var(--mainColor);
+}
+
+.registerContainer .title {
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: var(--textDark);
+}
+
+.registerContainer .credentials {
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 1.3px;
+    color: var(--textMedium);
+}
+
+.registerForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.registerContainer .form-field  {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #cbced1;
+    color: var(--textDark);
+}
+
+.registerContainer .form-field input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1rem;
+    color: var(--textMedium);
+    padding: 10px;
+}
+
+.btn-register {
+    width: 100%;
+    height: 40px;
+    margin-top: 30px;
+    border: none;
+    background-color: var(--mainColor);
+    color: var(--textLight);
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px var(--textMedium),
+        -3px -3px 3px var(--textLight);
+    letter-spacing: 1.3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.registerContainer .btn-register:hover {
+    background-color: var(--textMedium);
+}
+
+.logIn {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.toLogin {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--primaryColor);
+    transition: all 0.3s ease-in-out;
+}
+
+.toLogin:hover {
+    color: var(--textMedium);
+}

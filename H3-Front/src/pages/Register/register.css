@@ -1,7 +1,6 @@
 .registerContainer {
     width: 350px;
-    height: 450px;
-    margin: 40px auto;
+    height: auto;
     padding: 20px 30px 20px 30px;
     background-color: var(--textLight);
     border-radius: 15px;
@@ -22,16 +21,16 @@
     text-align: center;
     letter-spacing: 1.3px;
     color: var(--textMedium);
+    margin-bottom: 20px;
 }
 
 .registerForm {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
 }
 
 .registerContainer .form-field  {
-    font-size: 1.2rem;
+    font-size: 18px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -47,9 +46,9 @@
     border: none;
     outline: none;
     background: none;
-    font-size: 1rem;
-    color: var(--textMedium);
-    padding: 10px;
+    font-size: 14px;
+    color: var(--textDark);
+    padding: 7px;
 }
 
 .btn-register {
@@ -78,11 +77,29 @@
 .toLogin {
     text-decoration: none;
     font-weight: 400;
-    font-size: 0.8rem;
+    font-size: 12px;
     color: var(--primaryColor);
     transition: all 0.3s ease-in-out;
 }
 
 .toLogin:hover {
     color: var(--textMedium);
+}
+
+.textError {
+    color: red;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.userExist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    color: whitesmoke;
+    font-size: 14px;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 20px;
 }

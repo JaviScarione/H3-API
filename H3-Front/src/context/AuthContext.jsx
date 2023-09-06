@@ -1,6 +1,8 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest, verifyTokenRequest } from '../api/auth';
 import Cookie from 'js-cookie';
+import PropTypes from 'prop-types';
+
 
 export const AuthContext = createContext()
 
@@ -91,3 +93,7 @@ export const AuthProvider = ({ children }) => {
     )
 
 }
+
+AuthProvider.propTypes = {
+    children: PropTypes.node.isRequired
+};

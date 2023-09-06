@@ -5,11 +5,13 @@ import cors from 'cors';
 
 import authRoutes from './routes/auth.routes.js';
 import homeRoutes from './routes/home.routes.js';
+import clientsRoutes from './routes/clients.routes.js';
 
 const app = express()
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'http://localhost:5173',
+    credentials: true
 }));
 app.use(morgan('dev'));
 app.use(express.json());
@@ -17,5 +19,6 @@ app.use(cookieParser());
 
 app.use("/api", authRoutes);
 app.use("/api", homeRoutes);
+app.use("/api", clientsRoutes);
 
 export default app;

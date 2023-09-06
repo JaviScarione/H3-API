@@ -1,9 +1,15 @@
-
+import { useAuth } from "../../context/AuthContext";
+import AnimatedPages from "../AnimatedPages/AnimatedPages";
 function HomePage() {
+
+    const {user} = useAuth()
+
     return (
-        <div>
-            <h1>Home</h1>
-        </div>
+        <AnimatedPages>
+            <div>
+                <h1>Bienvenido {user.name}</h1>
+            </div>
+        </AnimatedPages>
     );
 }
 

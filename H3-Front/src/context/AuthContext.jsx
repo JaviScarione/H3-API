@@ -1,14 +1,15 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest, loginRequest, verifyTokenRequest } from '../api/auth';
+import { registerRequest, loginRequest, verifyTokenRequest, logoutRequest } from '../api/auth';
 import Cookie from 'js-cookie';
 import PropTypes from 'prop-types';
+import Cookies from "js-cookie";
 
 
 export const AuthContext = createContext()
 
+
 export const useAuth = () => {
     const context = useContext(AuthContext)
-
     if (!context) {
         throw new Error("useAuth must be used an AuthProvider");
     }
@@ -18,7 +19,8 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] =useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -26,7 +28,6 @@ export const AuthProvider = ({ children }) => {
     const signup = async (user) => {
        try {
         const res = await registerRequest(user);        
-        console.log(res.data);
         setUser(res.data)
         setIsAuthenticated(true);
        } catch (error) {
@@ -37,12 +38,27 @@ export const AuthProvider = ({ children }) => {
     const login = async (user) => {
         try {
             const res = await loginRequest(user)
-            console.log(res);
             setIsAuthenticated(true)
-            setUser(res.data)
+            setUser(res.data)            
+            if (res.data.admin == true) {
+                setIsAdmin(true);
+            }
         } catch (error) {
             setErrors(error.response.data.error);
         }
+    }
+
+    const logout = async () => {
+        try {
+            await logoutRequest(user)
+            Cookies.remove("token");
+            setIsAuthenticated(false);
+            setIsAdmin(false);
+            setUser(null);
+        } catch (error) {
+            setErrors(error.response.data);            
+        }
+        
     }
 
     useEffect(() => {
@@ -57,6 +73,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         async function checkLogin () {
             const cookies = Cookie.get()
+            
 
             if (!cookies.token) {
                 setIsAuthenticated(false);
@@ -74,8 +91,10 @@ export const AuthProvider = ({ children }) => {
 
                 setIsAuthenticated(true)
                 setUser(res.data)
+                if (res.data.admin == true) {
+                    setIsAdmin(true);
+                }
                 setLoading(false);
-
             } catch (error) {
                 setIsAuthenticated(false)
                 setUser(null)
@@ -84,10 +103,10 @@ export const AuthProvider = ({ children }) => {
             }
         }
         checkLogin();
-    }, []);
+    }, [isAdmin]);
 
     return (
-        <AuthContext.Provider value={{signup, login, loading, user, isAuthenticated, errors}}>
+        <AuthContext.Provider value={{signup, login, logout, loading, user, isAuthenticated, isAdmin, errors}}>
             {children}
         </AuthContext.Provider>
     )

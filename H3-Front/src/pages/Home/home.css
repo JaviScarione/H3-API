@@ -1,0 +1,97 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: calc(100vh - 50px);
+    width: auto;
+}
+
+.homeTitle {
+    width: 80%;
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    font-weight: bolder;
+    background-color: rgba(139, 149, 152, 0.3);
+    border-radius: 20px;
+}
+
+.name {
+    margin-top: 20px;
+}
+
+.imgHome {
+    width: 70%;
+    height: auto;
+    
+}
+
+.buttons {
+    width: 70vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.homeLink {
+    width: 100%;
+}
+
+.homeButton {
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    color: var(--textLight);
+    background-color: var(--primaryColor);
+    border: none;
+    box-shadow: 3px 3px 3px var(--textMedium),
+        -3px -3px 3px var(--textMedium);
+    letter-spacing: 1.3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.homeButton:hover {
+    background-color: rgba(0, 119, 170, 0.7);
+    color: var(--textLight);
+}
+
+@media screen and (min-width:1024px) {
+    .home {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 60%;
+        margin-left: 20%;
+        height: calc(100vh - 50px);
+    }
+    
+    .imgHome {
+        width: 60%;
+        height: auto;
+    }
+    
+    .buttons {
+        height: 8vh;
+        width: 50vw;
+        flex-direction: row;        
+    }
+    
+    .homeLink {
+        align-self: center;
+        justify-self: center;
+    }
+    
+    .homeButton {
+        width: 80%;
+        height: 40px;
+        border-radius: 20px;
+        color: var(--textLight);
+        background-color: var(--primaryColor);
+        border: none;
+        margin-left: 10%;
+    }
+}

@@ -1,0 +1,190 @@
+.addClient {
+    text-align: center;
+    height: 100%;
+}
+
+.addClient h1 {
+    position: absolute;
+    top: 90px;
+    left: 20vw;
+    width: 60vw;
+}
+
+.addClientForm {
+    border-radius: 20px;
+    width: 80vw;
+    text-align: center;
+    background: var(--marcoGrande);
+    padding: 10px;
+    margin-top: 8vh;
+}
+
+.envases {
+    margin-top: 10px;
+}
+
+h2 {
+    margin-bottom:5px;
+    font-size: 18px;
+}
+
+.campos {
+    width: 75vw;
+    background: var(--marcoChico);
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.campo {
+    background: #ADADAD;
+    color: var(--textLight);
+    border-radius: 10px;
+    padding: 0 5px;
+    border: none;
+    margin: 5px;
+    width: 95%;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.campo::placeholder {
+    color: var(--textLight);
+    opacity: 0.5;
+}
+
+.clearAddClientForm {
+    width: 90%;
+    height: 30px;
+    margin-top: 15px;
+    border-radius: 50px;
+    color: var(--textLight);
+    background-color: var(--mainColor);
+    border: none;
+    box-shadow: 3px 3px 3px var(--textMedium),
+        -3px -3px 3px var(--textMedium);
+    letter-spacing: 1.3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.clearAddClientForm:hover {
+    background-color: var(--textMedium);
+    color: var(--textLight);
+}
+
+.actionButtonsAddClient {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.cancelAddClient {
+    width: 35vw;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 50px;
+    color: var(--textLight);
+    background-color: var(--secondaryColor);
+    border: none;
+    box-shadow: 3px 3px 3px var(--textMedium),
+        -3px -3px 3px var(--textMedium);
+    letter-spacing: 1.3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.cancelAddClient:hover {
+    opacity: 0.7;
+}
+
+.aceptAddClient {
+    width: 35vw;
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 50px;
+    color: var(--textLight);
+    background-color: var(--primaryColor);
+    border: none;
+    box-shadow: 3px 3px 3px var(--textMedium),
+        -3px -3px 3px var(--textMedium);
+    letter-spacing: 1.3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.aceptAddClient:hover {
+    opacity: 0.7;
+}
+
+@media screen and (min-width:1024px) {
+    .addClient {
+        margin-left: 5%;
+        width: 90%;
+    }
+    
+    .addClient h1 {
+        top: 100px;
+        left: 25%;
+        width: 50%;
+    }
+    
+    .addClientForm {        
+        width: 100%;        
+        /*margin-top: 200px;*/
+    }
+    
+    .envases {
+        margin-top: 20px;
+    }
+    
+    h2 {
+        margin-bottom:10px;
+        font-size: 24px;
+        width: 100%;
+    }
+    
+    .campos {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .campo {
+        width: 250px;
+        padding: 0 10px;
+        text-align: center;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .clearAddClientForm {
+        width: 50%;
+        height: 40px;
+        margin-top: 50px;
+    }
+    
+    .actionButtonsAddClient {
+        margin: 80px 0 20px;
+        justify-content: space-evenly;
+    }
+    
+    .cancelAddClient {
+        width: 25vw;
+        height: 60px;
+    }
+    
+    .aceptAddClient {
+        width: 25vw;
+        height: 60px;
+    }
+
+    .textError {
+        height: 22px;
+        font-size: 16px;
+        margin-left: 10px;
+        margin-bottom: 0;
+        text-align: start;
+      }
+}

@@ -6,4 +6,5 @@ export const createClientSchema = z.object ({
     phone: z.number({required_error: 'Ingresa un teléfono.', invalid_type_error: 'El teléfono debe ser numérico'}),
     day: z.string({required_error: 'Selecciona un día de reparto.'}),
     cuit: z.number({invalid_type_error: 'El teléfono debe ser numérico'}).optional()
+
 });

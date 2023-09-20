@@ -29,7 +29,6 @@ export function ClientProvider({ children }) {
         try {
             const res = await getClientsRequest()
             setClients(res.data);
-            console.log(clients);
         } catch (error) {
             console.log(error);
         }

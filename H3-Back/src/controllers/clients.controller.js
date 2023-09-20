@@ -3,10 +3,8 @@ import Envases from "../models/envases.model.js"
 
 
 export const getClients = async (req, res) => {
-    const clients = await Client.find()
-    const envases = await Envases.find()
-
-    res.json({clients, envases})
+    const envases = await Envases.find().populate('client')
+    res.json(envases)
 };
 
 export const createClient = async (req, res) => {

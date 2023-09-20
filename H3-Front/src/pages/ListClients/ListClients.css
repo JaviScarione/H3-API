@@ -1,0 +1,87 @@
+.listClients {
+    text-align: center;
+    width: 100%;
+}
+
+.listClients h1 {
+    position: absolute;
+    top: 90px;
+    left: 20vw;
+    width: 60vw;
+}
+
+.tableContainer {    
+    width: 90vw;
+    overflow-x: auto;
+    margin: 80px auto 0;
+    height: 67vh; 
+    border-radius: 20px;
+    background: var(--textLight);
+
+}
+
+.listClients table {
+    width: 100%;
+    height: auto;
+}
+
+.cancelConsultClients {
+    width: 50vw;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 50px;
+    color: var(--textLight);
+    background-color: var(--secondaryColor);
+    border: none;
+    box-shadow: 3px 3px 3px var(--textMedium),
+        -3px -3px 3px var(--textMedium);
+    letter-spacing: 1.3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.cancelConsultClients:hover {
+    opacity: 0.7;
+}
+
+.tableContainer thead {
+    background-color: var(--textMedium);
+}
+
+.tableContainer th, .tableContainer td {
+    border: 1px solid var(--textDark);
+    padding: 3px 5px;
+}
+
+.editClient {
+    color: var(--textMedium);
+    transition: all 0.3s ease-in-out;
+}
+
+.editClient:hover {
+    color: var(--secondaryColor);
+}
+
+@media screen and (min-width:1024px) {
+   
+    .tableContainer {    
+        width: 60vw;    
+    }
+    
+    .cancelConsultClients {
+        width: 25vw;
+        height: 50px;
+        margin-top: 20px;
+        border-radius: 50px;
+        color: var(--textLight);
+        background-color: var(--secondaryColor);
+        border: none;
+        box-shadow: 3px 3px 3px var(--textMedium),
+            -3px -3px 3px var(--textMedium);
+        letter-spacing: 1.3px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .tableContainer th, .tableContainer td {
+        font-size: 18px;
+    }
+}

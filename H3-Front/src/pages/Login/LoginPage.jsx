@@ -6,15 +6,37 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 import AnimatedPages from '../AnimatedPages/AnimatedPages';
+import { useNavigate } from "react-router-dom";
+import withReactContent from 'sweetalert2-react-content'
+import Swal from 'sweetalert2'
+
+
 
 function LoginPage() {
 
     const {register, handleSubmit, formState: {errors}} = useForm(); 
 
-    const {login, errors: loginErrors} = useAuth();
+    const { login, isAuthenticated, errors: loginErrors} = useAuth();
 
-    const onSubmit = handleSubmit(data => {
-        login(data)
+    const navigate = useNavigate();
+    const MySwal = withReactContent(Swal);
+
+
+
+    const onSubmit = handleSubmit(async (data) => {
+        try {
+            await login(data)
+            .then(() => {
+                navigate("/home");                
+            })
+        } catch (error) {
+            MySwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo ha salido mal, intentalo nuevamente.',
+              })
+        }
+        
     })
 
     return (
@@ -43,10 +65,12 @@ function LoginPage() {
                         <MdKey />
                         <input type="password" placeholder="Contraseña" {...register("password", {required: true })} />
                     </div>
-                    <button type="submit" className="btn btn-login bg-[#0077aa]">Ingresar</button>
+                    <button type="submit" className="btn btn-login">Ingresar</button>
                 </form>
                 <div className="register">
+                { isAuthenticated && (
                     <Link to="/register" className="toRegister">Crear Usuario</Link>
+                ) }
                 </div>
             </div>
         </AnimatedPages>

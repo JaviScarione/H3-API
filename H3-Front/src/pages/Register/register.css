@@ -1,7 +1,7 @@
 .registerContainer {
-    width: 350px;
-    height: auto;
-    padding: 20px 30px 20px 30px;
+    min-width: 350px;
+    min-height: auto;
+    padding: 40px 30px 30px 30px;
     background-color: var(--textLight);
     border-radius: 15px;
     box-shadow: 13px 13px 20px var(--mainColor);
@@ -27,6 +27,7 @@
 .registerForm {
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .registerContainer .form-field  {
@@ -51,12 +52,12 @@
     padding: 7px;
 }
 
-.btn-register {
+.registerContainer .btn-register {
     width: 100%;
     height: 40px;
     margin-top: 30px;
     border: none;
-    background-color: var(--mainColor);
+    background-color: var(--primaryColor);
     color: var(--textLight);
     border-radius: 25px;
     box-shadow: 3px 3px 3px var(--textMedium),
@@ -66,7 +67,8 @@
 }
 
 .registerContainer .btn-register:hover {
-    background-color: var(--textMedium);
+    background-color: rgba(0, 119, 170, 0.7);
+    color: var(--textLight);
 }
 
 .logIn {
@@ -86,9 +88,11 @@
     color: var(--textMedium);
 }
 
+
 .textError {
     color: red;
     margin-left: 10px;
+    margin-bottom: 5px;
     font-size: 12px;
 }
 

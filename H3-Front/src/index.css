@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500;600;700&family=Raleway:wght@200;300;400;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 
 :root {
 	--mainColor: #7b7b7d;
@@ -12,14 +8,19 @@
 	--textLight: #FEFEFE;
   --textDark: #343434;
   --textMedium: #8B9598;
+  --marcoGrande: rgba(255, 255, 255, 0.3);
+  --marcoChico: rgba(255, 255, 255, 0.6);
   --font-primary:'Raleway', sans-serif;
   --font-secondary: 'Montserrat', sans-serif;;
 }
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--font-primary), var(--font-secondary);
 }
+
 body{
     background-image: url('../../../public/fondo.jpg');
     background-repeat: no-repeat;
@@ -31,4 +32,16 @@ body{
     align-items: center;
     flex-direction: column;
     font-family: var(--font-primary);
+}
+
+body::after {
+  content: "";
+  background-image: url('../../../public/fondo.jpg');
+  opacity: 0.7;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
 }

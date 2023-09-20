@@ -2,11 +2,11 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../../context/AuthContext';
 import { MdAlternateEmail, MdKey } from "react-icons/md";
 import { BsPersonVcard } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './register.css';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import AnimatedPages from '../AnimatedPages/AnimatedPages';
+import withReactContent from 'sweetalert2-react-content'
+import Swal from 'sweetalert2'
 
 
 
@@ -14,15 +14,25 @@ function RegisterPage() {
 
     const {register, handleSubmit, formState: { errors }} = useForm();
     const {signup, isAuthenticated, errors: registerErrors} = useAuth();
+
     const navigate = useNavigate();
+    const MySwal = withReactContent(Swal);
 
 
-    useEffect(() => {
-        if (isAuthenticated) navigate("/home");
-    }, [isAuthenticated]);
-
+   
     const onSubmit = handleSubmit(async (values) => {
-        signup(values);
+        try {            
+            await signup(values)
+            .then(() => {
+                navigate("/");                
+            })
+        } catch (error) {
+            MySwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo ha salido mal, intentalo nuevamente.',
+              })
+        }
     });
 
     return (
@@ -64,10 +74,10 @@ function RegisterPage() {
                         <MdKey />
                         <input type="password" placeholder="Contraseña" {...register("password", {required: true })} />
                     </div>
-                    <button type="submit" className="btn btn-register bg-[#0077aa]">Registrar</button>
+                    <button type="submit" className="btn btn-register">Registrar</button>
                 </form>
                 <div className="logIn">
-                    <Link to="/" className="toLogin">Iniciar Sesión</Link>
+                    <Link to="/home" className="toLogin">Home</Link>
                 </div>
             </div>
         </AnimatedPages>

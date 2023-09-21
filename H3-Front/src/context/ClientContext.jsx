@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import {createClientRequest, getClientsRequest} from '../api/clients';
+import {createClientRequest, getClientsRequest, deleteClientRequest, getClientRequest, updateClientRequest} from '../api/clients';
 
 import PropTypes from 'prop-types';
 
@@ -21,8 +21,11 @@ export function ClientProvider({ children }) {
     const [clients, setClients] = useState([]);
 
     const createClient = async (client) => {
-        const res = await createClientRequest(client)
-        console.log(res);
+        try {
+            await createClientRequest(client)
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const getClients = async () => {
@@ -30,12 +33,38 @@ export function ClientProvider({ children }) {
             const res = await getClientsRequest()
             setClients(res.data);
         } catch (error) {
-            console.log(error);
+            console.error(error);
+        }
+    }
+
+    const deleteClient = async (id) => {
+        try {
+            const res = await deleteClientRequest(id);            
+            if (res.status == 204 ) setClients(clients.filter(client => client.client._id !== id));            
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const getClient = async (id) => {
+        try {
+            const res = await getClientRequest(id);
+            return res.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const updateClient = async (id, client) => {
+        try {
+            await updateClientRequest(id, client)            
+        } catch (error) {
+            console.error(error);
         }
     }
 
     return (
-        <ClientContext.Provider value={{clients, createClient, getClients}}>
+        <ClientContext.Provider value={{clients, createClient, getClients, deleteClient, getClient, updateClient}}>
             {children}
         </ClientContext.Provider>
     )

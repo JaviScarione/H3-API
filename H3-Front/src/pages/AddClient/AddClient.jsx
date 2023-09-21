@@ -2,20 +2,48 @@ import './AddClient.css';
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import AnimatedPages from "../AnimatedPages/AnimatedPages";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useClient } from '../../context/ClientContext';
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
+import { useEffect } from 'react';
 
 
 function AddClient () {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
-    const {createClient} = useClient();
+    const {setValue, register, handleSubmit, formState: {errors}} = useForm();
+    const {createClient, getClient, updateClient} = useClient();
 
     const MySwal = withReactContent(Swal);
     const navigate = useNavigate();
+    const params = useParams();
+
+
+    
+
+    useEffect(() => {
+        async function loadClient () {
+            if (params.id) {
+                const client = await getClient(params.id);
+                setValue('name', client.name)
+                setValue('address', client.address)
+                setValue('phone', client.phone)
+                setValue('cuit', client.cuit)
+                setValue('day', client.day)
+                setValue('h320', client.h320)
+                setValue('h312', client.h312)
+                setValue('lgm', client.lgm)
+                setValue('lgbs', client.lgbs)
+                setValue('soda', client.soda)
+                setValue('fc', client.fc)
+           } else {
+            clearForm();
+           }
+        }
+        loadClient()
+    }, [params.id]);
+    
 
 
     const onSubmit = handleSubmit (async(data) => {
@@ -27,29 +55,53 @@ function AddClient () {
             data[fieldName] = 0;
             }
         });
-        try {
-            await createClient(data)
-            .then(() => {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'El cliente se agregó con éxito!',
-                    showConfirmButton: false,
-                    timer: 2000
-                  }) .then(() => {
-                    navigate("/home");                     
-                  })              
-            })            
-        } catch (error) {
-            MySwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Algo ha salido mal, intentalo nuevamente.',
-              })
+        if (params.id) {
+            try {
+                updateClient(params.id, data)
+                .then(() => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'El cliente se actualizó con éxito!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      }) .then(() => {
+                        navigate("/listClients");                     
+                      })              
+                })            
+            } catch (error) {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo ha salido mal, intentalo nuevamente.',
+                  })
+            }
+        } else {
+            try {
+                await createClient(data)
+                .then(() => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'El cliente se agregó con éxito!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      }) .then(() => {
+                        navigate("/home");                     
+                      })              
+                })            
+            } catch (error) {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo ha salido mal, intentalo nuevamente.',
+                  })
+            }
         }
     })
+   
     const clearForm = (e) => {
-        e.preventDefault()
+        if (e) e.preventDefault()
         const form = document.querySelector('.addClientForm');
         const inputFields = form.querySelectorAll('input[type="text"], input[type="number"], select');
     
@@ -60,18 +112,21 @@ function AddClient () {
           }
         });
       };
+
     return (
         <div className='addClient'>
             <Navbar />
+            {
+                !params.id ? (<h1><u>Agregar Cliente</u></h1>) : (<h1><u>Editar Cliente</u></h1>)
+            }
                 <AnimatedPages>
-                    <h1><u>Agregar Cliente</u></h1>
                     <form className='addClientForm' onSubmit={onSubmit}>
                         <div>
                                 <h2>Datos del Cliente</h2>
                             <div className="campos">
                                 <div className='errorDiv'>
                                     { errors.name && (<p className='textError'>El nombre es requerido</p>) }
-                                    <input className='campo'type="text" name="name" id="nombre" placeholder="Nombre Completo" autoFocus {...register('name', {required: true })} />
+                                    <input className='campo'type="text" name="name" id="nombre" placeholder="Nombre Completo" {...register('name', {required: true })} />
                                 </div>
                                 <div>
                                     { errors.address && (<p className='textError'>La dirección es requerida</p>) }
@@ -79,15 +134,16 @@ function AddClient () {
                                 </div>
                                 <div>
                                     { errors.phone && (<p className='textError'>El teléfono es requerido</p>) }
-                                    <input className='campo' type="number" name="phone" id="tel" placeholder="Teléfono" {...register('phone', {required: true, valueAsNumber: true })}/>
+                                    <input className='campo num' type="number" name="phone" id="tel" placeholder="Teléfono" {...register('phone', {required: true, valueAsNumber: true })}/>
                                 </div>
-                                <input className='campo' type="number" name="cuit" id="cuit" placeholder="CUIT" {...register('cuit',{ valueAsNumber: true })}/>
+                                <input className='campo num' type="number" name="cuit" id="cuit" placeholder="CUIT" {...register('cuit',{ valueAsNumber: true })}/>
                                 <select className='campo' name='day' {...register('day')}>
                                     <option>Lunes</option>
                                     <option>Martes</option>
                                     <option>Miércoles</option>
                                     <option>Jueves</option>
                                     <option>Viernes</option>
+                                    <option>Por Pedido</option>
                                 </select>
                             </div>
                         </div>

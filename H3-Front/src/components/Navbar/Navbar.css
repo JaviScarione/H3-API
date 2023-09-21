@@ -1,6 +1,6 @@
 header {
 	display: flex;
-	height: 60px;
+	height: 50px;
 	color: var(--textLight);
 	width: 100%;
 	position: fixed;
@@ -59,9 +59,6 @@ nav {
 
 
 @media screen and (min-width:1024px) {
-    header {
-        height: 50px;
-    }
     
     nav {
         width: 50%;

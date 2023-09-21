@@ -26,7 +26,7 @@
 }
 
 .cancelConsultClients {
-    width: 50vw;
+    width: 35vw;
     height: 40px;
     margin-top: 20px;
     border-radius: 50px;
@@ -50,16 +50,56 @@
 .tableContainer th, .tableContainer td {
     border: 1px solid var(--textDark);
     padding: 3px 5px;
+    font-size: 13px;
+    white-space: nowrap;
 }
 
 .editClient {
     color: var(--textMedium);
     transition: all 0.3s ease-in-out;
+    font-size: 16px;
+}
+
+.deleteClient {
+    color: var(--textMedium);
+    transition: all 0.3s ease-in-out;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+}
+
+.deleteClient:hover {
+    color: var(--secondaryColor);
 }
 
 .editClient:hover {
-    color: var(--secondaryColor);
+    color: var(--primaryColor);
 }
+
+.addConsultClients {
+    width: 35vw;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 50px;
+    color: var(--textLight);
+    background-color: var(--primaryColor);
+    border: none;
+    box-shadow: 3px 3px 3px var(--textMedium),
+        -3px -3px 3px var(--textMedium);
+    letter-spacing: 1.3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.addConsultClients:hover {
+    opacity: 0.7;
+}
+
+.actionButtonsListClients {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 
 @media screen and (min-width:1024px) {
    
@@ -70,16 +110,13 @@
     .cancelConsultClients {
         width: 25vw;
         height: 50px;
-        margin-top: 20px;
-        border-radius: 50px;
-        color: var(--textLight);
-        background-color: var(--secondaryColor);
-        border: none;
-        box-shadow: 3px 3px 3px var(--textMedium),
-            -3px -3px 3px var(--textMedium);
-        letter-spacing: 1.3px;
-        transition: all 0.3s ease-in-out;
     }
+
+    .addConsultClients {
+        width: 25vw;
+        height: 50px;
+    }
+    
     
     .tableContainer th, .tableContainer td {
         font-size: 18px;

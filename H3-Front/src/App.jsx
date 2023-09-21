@@ -38,7 +38,7 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path='/register' element={<RegisterPage />} />
               <Route path='/home' element={<HomePage />} />
-              <Route path='/addclient' element={<AddClient />}></Route>
+              <Route path='/clients' element={<AddClient />}></Route>
               <Route path='/addproduct' element={<AddProduct />}></Route>
               <Route path='/cashclosing' element={<CashClosing />}></Route>
               <Route path='/cashclosingdetail' element={<CashClosingDetail />}></Route>
@@ -50,7 +50,7 @@ function App() {
               <Route path='/distributionday' element={<DistributionDay />}></Route>
               <Route path='/listclients' element={<ListClients />}></Route>
               <Route path='/listproducts' element={<ListProducts />}></Route>
-              <Route path='/modifyclient' element={<ModifyClient />}></Route>
+              <Route path='/clients/:id' element={<AddClient />}></Route>
               <Route path='/modifyproduct' element={<ModifyProduct />}></Route>
               <Route path='/moneyflow' element={<MoneyFlow />}></Route>
               <Route path='/payment' element={<Payment />}></Route>

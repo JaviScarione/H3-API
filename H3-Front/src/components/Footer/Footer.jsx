@@ -8,9 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 
+
 function Footer () {
 
-    const { logout } = useAuth();
+    const { logout, isAdmin } = useAuth();
     const MySwal = withReactContent(Swal);
     const navigate = useNavigate();
 
@@ -33,7 +34,9 @@ function Footer () {
 
     return (
         <div className="footer">
-            <Link to='/register'><h5><FiUserPlus className="iconFooter"/></h5></Link>
+            {
+                isAdmin && <Link to='/register'><h5><FiUserPlus className="iconFooter"/></h5></Link>
+            }
             <button className="exit" onClick={exit}><h5><RxExit className="iconFooter"/></h5></button>
         </div>
     );

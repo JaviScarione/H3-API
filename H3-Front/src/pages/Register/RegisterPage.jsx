@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
 function RegisterPage() {
 
     const {register, handleSubmit, formState: { errors }} = useForm();
-    const {signup, isAuthenticated, errors: registerErrors} = useAuth();
+    const {signup, errors: registerErrors} = useAuth();
 
     const navigate = useNavigate();
     const MySwal = withReactContent(Swal);

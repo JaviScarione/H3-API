@@ -52,6 +52,13 @@ h2 {
     opacity: 0.5;
 }
 
+.campo.num::-webkit-outer-spin-button,
+.campo.num::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 .clearAddClientForm {
     width: 90%;
     height: 30px;

@@ -45,7 +45,7 @@ function Navbar () {
                     </DropdownToggle>
 
                     <DropdownMenu className='dropdownMenu'>
-                        <Link to='/addclient' className='link'><DropdownItem className='dropdownItem'>Agregar Cliente</DropdownItem></Link>
+                        <Link to='/clients' className='link'><DropdownItem className='dropdownItem'>Agregar Cliente</DropdownItem></Link>
                         <Link to='/listclients' className='link'><DropdownItem className='dropdownItem'>Consultar Clientes</DropdownItem></Link>
                     </DropdownMenu>
                 </Dropdown>

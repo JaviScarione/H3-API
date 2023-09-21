@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 import { MdAlternateEmail, MdKey } from "react-icons/md";
 import './login.css';
@@ -26,18 +27,18 @@ function LoginPage() {
     const onSubmit = handleSubmit(async (data) => {
         try {
             await login(data)
-            .then(() => {
-                navigate("/home");                
-            })
         } catch (error) {
             MySwal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Algo ha salido mal, intentalo nuevamente.',
               })
-        }
-        
+        }        
     })
+
+    useEffect(() => {
+        if (isAuthenticated) navigate('/home');
+    }, [isAuthenticated]);
 
     return (
         <AnimatedPages>
